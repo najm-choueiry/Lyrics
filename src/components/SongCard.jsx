@@ -5,9 +5,7 @@ import PlayPause from "./PlayPause";
 
 import { playPause, setActiveSong } from "../redux/features/playerSlice";
 
-const SongCard = ({ song, i }) => {
-  const activeSong = "Test";
-
+const SongCard = ({ song, i, isPlaying, activeSong, data }) => {
   const handlePauseClick = () => {};
 
   const handlePlayClick = () => {};
@@ -25,6 +23,8 @@ const SongCard = ({ song, i }) => {
         />
         <PlayPause
           song={song}
+          isPlaying={isPlaying}
+          activeSong={activeSong}
           handlePause={handlePauseClick}
           handlePlay={handlePlayClick}
         />
