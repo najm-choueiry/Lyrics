@@ -12,6 +12,18 @@ import { useGetTopChatsQuery } from "../redux/services/shazamCore";
 import "swiper/css";
 import "swiper/css/free-mode";
 
+// ----------------- TOP CHART CARD
+
+const TopChartCard = ({ song, i }) => {
+  return (
+    <div className="w-full flex flex-row items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2">
+      {song.title}
+    </div>
+  );
+};
+
+// -----------------  TOP PLAY
+
 const TopPlay = () => {
   const dispatch = useDispatch();
   const { activeSong, isPlaying } = useSelector((state) => state.player);
@@ -45,6 +57,47 @@ const TopPlay = () => {
             <p className="text-gray-300 text-base cursor-pointer"> See More </p>
           </Link>
         </div>
+        <div className="mt-4 flex flex-col gap-1">
+          {topPlays?.map((song, i) => (
+            <TopChartCard song={song} i={i} key={song.key} />
+          ))}
+        </div>
+      </div>
+
+      {/* top artists */}
+      <div className="w-full fle flex-col mt-8">
+        <div className="flex flex-row justify-between items-center">
+          <h2 className="text-white font-bold text-2xl"> Top Artists </h2>
+          <Link to="/top-artists">
+            <p className="text-gray-300 text-base cursor-pointer"> See More </p>
+          </Link>
+        </div>
+
+        <Swiper
+          slidesPerView="auto"
+          spaceBetween={15}
+          freeMode
+          centeredSlides
+          centeredSlidesBounds
+          modules={[FreeMode]}
+          className="mt-4"
+        >
+          {topPlays?.map((song, i) => {
+            <SwiperSlide
+              key={song?.key}
+              style={{ width: "25%", height: "auto" }}
+              className="shadow-lg rounded-full animate-slideright"
+            >
+              <Link to={`/artists/${song?.artists[0].adamid}`}>
+                <img
+                  src={song?.images.background}
+                  alt="name"
+                  className="rounded-full w-full object-cover"
+                />
+              </Link>
+            </SwiperSlide>;
+          })}
+        </Swiper>
       </div>
     </div>
   );
