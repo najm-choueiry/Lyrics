@@ -13,26 +13,30 @@ export const shazamCoreApi = createApi({
     },
   }),
   endpoints: (builder) => ({
-    getTopCharts: builder.query({ query: (genre) => `/charts/${genre}` }),
-  }),
-  getSongDetails: builder.query({
-    query: ({ songid }) => `/tracks/details?track_id=${songid}`,
-  }),
-  getSongRelated: builder.query({
-    query: ({ songid }) => `/tracks/related?track_id=${songid}`,
-  }),
-  getArtistDetails: builder.query({
-    query: (artistId) => `/artists/details?artist_id=${artistId}`,
-  }),
-  getSongsByCountry: builder.query({
-    query: (countryCode) => `/chars/country?country_code=${countryCode}`,
+    getTopCharts: builder.query({ query: (genre) => `/charts/world` }),
+    getSongsByGenre: builder.query({
+      query: (genre) => `/charts/genre-world?genre_code=${genre}`,
+    }),
+    getSongDetails: builder.query({
+      query: ({ songid }) => `/tracks/details?track_id=${songid}`,
+    }),
+    getSongRelated: builder.query({
+      query: ({ songid }) => `/tracks/related?track_id=${songid}`,
+    }),
+    getArtistDetails: builder.query({
+      query: (artistId) => `/artists/details?artist_id=${artistId}`,
+    }),
+    getSongsByCountry: builder.query({
+      query: (countryCode) => `/charts/country?country_code=${countryCode}`,
+    }),
   }),
 });
 
 export const {
   useGetTopChartsQuery,
   useGetSongDetailsQuery,
-  useGetSongRelated,
-  useGetArtistDetails,
-  useGetSongsByCountry,
+  useGetSongsByGenreQuery,
+  useGetSongRelatedQuery,
+  useGetArtistDetailsQuery,
+  useGetSongsByCountryQuery,
 } = shazamCoreApi;
