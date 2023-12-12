@@ -29,7 +29,25 @@ const AroundYou = () => {
 
   if (error && country) return <Error />;
 
-  return <div>AroundYou</div>;
+  return (
+    <div className="flex flex-col">
+      <h2 className="font-bold text-3xl text-white text-left mt-5 mb-10">
+        {" "}
+        Around You <span className="font-black">{country} </span>
+      </h2>
+      <div className="flex flex-wrap sm:justify-start justify-center gap-8">
+        {data?.map((song, i) => {
+          <SongCard
+            key={song.key}
+            song={song}
+            isPlaying={isPlaying}
+            activeSong={activeSong}
+            data={data}
+          />;
+        })}
+      </div>
+    </div>
+  );
 };
 
 export default AroundYou;
