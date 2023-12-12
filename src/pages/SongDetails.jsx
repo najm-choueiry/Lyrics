@@ -28,6 +28,16 @@ const SongDetails = () => {
     return <Loader title="Searching song details" />;
 
   if (error) return <Error />;
+
+  const handlePauseClick = () => {
+    dispatch(playPause(false));
+  };
+
+  const handlePlayClick = (song, i) => {
+    dispatch(setActiveSong({ song, data, i }));
+    dispatch(playPause(true));
+  };
+
   return (
     <div className="flex flex-col">
       <DetailsHeader artistId="" songData={songData} />
@@ -47,7 +57,13 @@ const SongDetails = () => {
           )}
         </div>
       </div>
-      <RelatedSongs />
+      <RelatedSongs
+        data={data}
+        isPlaying={isPlaying}
+        activeSong={activeSong}
+        handlePauseClick={handlePauseClick}
+        handlePlayClick={handlePlayClick}
+      />
     </div>
   );
 };
