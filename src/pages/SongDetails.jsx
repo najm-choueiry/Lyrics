@@ -5,7 +5,7 @@ import { setActiveSong, playPause } from "../redux/features/playerSlice";
 import {
   useGetTopChartsQuery,
   useGetSongDetailsQuery,
-  useGetSongRelated,
+  useGetSongRelatedQuery,
 } from "../redux/services/shazamCore";
 
 const SongDetails = () => {
@@ -22,7 +22,7 @@ const SongDetails = () => {
     data,
     isFetching: isFetchingRelatedSongs,
     error,
-  } = useGetSongRelated({ songid });
+  } = useGetSongRelatedQuery({ songid });
 
   if (isFetchingRelatedSongs || isFetchingSongDetails)
     return <Loader title="Searching song details" />;

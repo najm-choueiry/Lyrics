@@ -3,7 +3,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 
 import { Error, Loader, SongCard } from "../components";
-import { useGetSongsByCountry } from "../redux/services/shazamCore";
+import { useGetSongsByCountryQuery } from "../redux/services/shazamCore";
 import { useFetcher } from "react-router-dom";
 
 const AroundYou = () => {
@@ -23,7 +23,7 @@ const AroundYou = () => {
     // at_k5AZGhkOIIFDxx6J9GLsNAX9l3rWu
   }, [country]);
 
-  const { data, isFetching, error } = useGetSongsByCountry(country);
+  const { data, isFetching, error } = useGetSongsByCountryQuery(country);
 
   if (isFetching && loading) return <Loader title="Loading songs around you" />;
 
